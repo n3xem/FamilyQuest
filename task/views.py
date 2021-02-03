@@ -11,3 +11,7 @@ class DetailView(generic.DetailView):
 class CreateView(generic.edit.CreateView):
     model = Task
     fields = '__all__' # 全てのカラムを指定
+
+class UpdateView(generic.edit.UpdateView):
+    model = Task
+    fields = '__all__'
