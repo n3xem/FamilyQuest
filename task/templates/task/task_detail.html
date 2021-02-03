@@ -1,0 +1,21 @@
+{% extends "./base.html" %}
+{% block title %}{{ task.name }} - 詳細{% endblock %}
+{% block content %}
+<h1>タスク一覧</h1>
+
+<h2> {{ task.name }}</h2>
+<div>
+    <a href='{% url "task:index" %}'>タスク一覧</a> |
+    <a href='{% url "task:update" task.pk %}'>タスクの編集</a> |
+    <a href='{% url "task:delete" task.pk %}'>タスクの削除</a>
+</div>
+<ul>
+    <li>経験値:{{ task.experience_point }}</li>
+    <li>依頼者:{{ task.client }}</li>
+    <li>子供に表示するかどうか:{{ task.is_show_child }}</li>
+    <li>完了:{{ task.is_completed }}</li>
+    <li>作成日時:{{ task.created_at }}</li>
+    <li>最終更新:{{ task.updated_at }}</li>
+</ul>
+
+{% endblock %}
