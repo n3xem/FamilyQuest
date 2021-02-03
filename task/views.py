@@ -7,3 +7,7 @@ class IndexView(generic.ListView):
 
 class DetailView(generic.DetailView):
     model = Task
+
+class CreateView(generic.edit.CreateView):
+    model = Task
+    fields = '__all__' # 全てのカラムを指定
