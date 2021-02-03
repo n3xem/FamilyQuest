@@ -1,17 +1,13 @@
-{% extends "task/base.html" %}
+{% extends "./base.html" %}
 {% block title %}タスク一覧{% endblock %}
 {% block content %}
 <h1>タスク一覧</h1>
 
 {% for task in object_list %}
-<h2> {{ task.name }}</h2>
+<h2> <a href='{% url "task:detail" task.pk %}'>{{ task.name }}</a></h2>
 <ul>
-    <li>経験値:{{ task.experience_point }}</li>
     <li>依頼者:{{ task.client }}</li>
-    <li>子供に表示するかどうか:{{ task.is_show_child }}</li>
-    <li>完了:{{ task.is_complete }}</li>
     <li>作成日時:{{ task.created_at }}</li>
-    <li>最終更新:{{ task.updated_at }}</li>
 </ul>
 {% endfor %}
 {% endblock %}

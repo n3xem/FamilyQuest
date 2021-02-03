@@ -5,4 +5,5 @@ from .models import Task
 class IndexView(generic.ListView):
     model = Task
 
-
+class DetailView(generic.DetailView):
+    model = Task
