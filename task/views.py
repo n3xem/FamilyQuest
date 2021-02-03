@@ -15,3 +15,7 @@ class CreateView(generic.edit.CreateView):
 class UpdateView(generic.edit.UpdateView):
     model = Task
     fields = '__all__'
+
+class DeleteView(generic.edit.DeleteView):
+    model = Task
+    success_url = reverse_lazy('task:index')

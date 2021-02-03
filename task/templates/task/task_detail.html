@@ -5,8 +5,9 @@
 
 <h2> {{ task.name }}</h2>
 <div>
-    <a href='{% url "task:index" %}'>タスク一覧</a>
-    <a href='{% url "task:update" task.pk %}'>タスクの編集</a>
+    <a href='{% url "task:index" %}'>タスク一覧</a> |
+    <a href='{% url "task:update" task.pk %}'>タスクの編集</a> |
+    <a href='{% url "task:delete" task.pk %}'>タスクの削除</a>
 </div>
 <ul>
     <li>経験値:{{ task.experience_point }}</li>
