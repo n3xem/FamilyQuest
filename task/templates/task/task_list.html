@@ -1,10 +1,13 @@
 {% extends "./base.html" %}
 {% block title %}タスク一覧{% endblock %}
 {% block content %}
+{{ login_user }}
 <h1>タスク一覧</h1>
+{% if user.is_authenticated %}
 <div class="task-create">
     <a href='{% url "task:create" %}'>新しいタスクの追加</a>
 </div>
+{% endif %}
 {% for task in object_list %}
 <h2> <a href='{% url "task:detail" task.pk %}'>{{ task.name }}</a></h2>
 <ul>
