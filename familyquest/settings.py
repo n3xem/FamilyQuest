@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'task.apps.TaskConfig',
+    'shop.apps.ShopConfig',
     # django-allauth
     'allauth',
     'allauth.account',
