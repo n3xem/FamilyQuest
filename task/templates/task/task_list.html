@@ -13,6 +13,14 @@
 <ul>
     <li>依頼者:{{ task.client }}</li>
     <li>作成日時:{{ task.created_at }}</li>
+    {% if task.is_completed %}
+    <li>タスク完了済み</li>
+    <li>完了者: {{ task.completed_user }}</li>
+    <a href='{% url "task:incomplete" task.pk %}'>タスクを未完了に戻す</a>
+    {% else %}
+    <li>タスク未完了</li>
+    <a href='{% url "task:complete" task.pk %}'>タスクを完了させる</a>
+    {% endif %}
 </ul>
 {% endfor %}
 {% endblock %}

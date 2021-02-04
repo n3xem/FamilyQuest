@@ -9,6 +9,12 @@ class Task(models.Model):
         'users.User',
         on_delete=models.CASCADE,
     )
+    completed_user = models.ForeignKey(
+        'users.User',
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='completed_user'
+    )
     is_show_child = models.BooleanField()
     is_completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
