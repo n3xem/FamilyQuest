@@ -1,0 +1,9 @@
+{% extends "./base.html" %}
+{% block title %}アイテム一覧{% endblock %}
+{% block content %}
+<h1>アイテム一覧</h1>
+{% for item in object_list %}
+<h1>{{ item.name }}</h1>
+<p>{{ item.experience_point_cost }}ポイントで買えます</p>
+{% endfor %}
+{% endblock %}

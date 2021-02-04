@@ -16,5 +16,5 @@ class TaskBackgroundItem(Item):
     type = IntegerField(default=0)
 
     colorcode = models.CharField(max_length=20, default='white')
-    colorcode_2 = models.CharField(max_length=20, null=True)
-    image = models.ImageField(upload_to='images/item/', null=True)
+    colorcode_2 = models.CharField(max_length=20, null=True, blank=True)
+    image = models.ImageField(upload_to='images/item/', null=True, blank=True)
