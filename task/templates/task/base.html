@@ -7,8 +7,13 @@
 </head>
 
 <body>
+    {% if user.is_authenticated %}
+    {{ user.username }}さん、こんにちは。あなたの経験値は{{ user.experience_point }}です。
+    {% endif %}
+
     {% block content %}
     {% endblock %}
+
     {% if user.is_authenticated %}
     <a href="/logout">ログアウト</a>
     {% else %}
