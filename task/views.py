@@ -11,6 +11,10 @@ def complete(request, pk):
     task.is_completed = True
     task.completed_user = request.user
     task.save()
+
+    request.user.experience_point += task.experience_point
+    request.user.save()
+
     context = {
         'pk': pk ,
         'task': task,
@@ -19,9 +23,15 @@ def complete(request, pk):
 
 def incomplete(request, pk):
     task = Task.objects.get(pk=pk)
+    
+    task.completed_user.experience_point -= task.experience_point
+    task.completed_user.save()
+
     task.is_completed = False
     task.completed_user = None
     task.save()
+
+
     context = {
         'pk': pk ,
         'task': task,
