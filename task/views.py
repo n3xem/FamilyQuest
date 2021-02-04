@@ -1,7 +1,32 @@
+from django.db.models.deletion import SET_NULL
+from django.db.models.lookups import IsNull
 from django.urls import reverse_lazy
 from django.views import generic
+from django.shortcuts import render
 from .models import Task
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+def complete(request, pk):
+    task = Task.objects.get(pk=pk)
+    task.is_completed = True
+    task.completed_user = request.user
+    task.save()
+    context = {
+        'pk': pk ,
+        'task': task,
+    }
+    return render(request, 'task/complete.html', context)
+
+def incomplete(request, pk):
+    task = Task.objects.get(pk=pk)
+    task.is_completed = False
+    task.completed_user = None
+    task.save()
+    context = {
+        'pk': pk ,
+        'task': task,
+    }
+    return render(request, 'task/complete.html', context)
 
 class IndexView(generic.ListView):
     model = Task
