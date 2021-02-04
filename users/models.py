@@ -38,6 +38,7 @@ class User(AbstractBaseUser, PermissionsMixin):
   username = models.CharField(max_length=30, unique=True)
   email = models.EmailField(blank=True, null=True)
   icon = models.ImageField(blank=True, null=True)
+  experience_point = models.IntegerField(default=0)
   is_staff = models.BooleanField(
     _('staff status'),
     default=False,
