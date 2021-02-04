@@ -8,19 +8,21 @@
 </div>
 {% endif %}
 {% for task in object_list %}
-<h2> <a href='{% url "task:detail" task.pk %}'>{{ task.name }}</a></h2>
-<ul>
-    <li>依頼者:{{ task.client }}</li>
-    <li>作成日時:{{ task.created_at }}</li>
-    {% if task.is_completed %}
-    <li>タスク完了済み</li>
-    <li>完了者: {{ task.completed_user }}</li>
-    <a href='{% url "task:incomplete" task.pk %}'>タスクを未完了に戻す</a>
-    {% else %}
-    <li>獲得できる経験値:{{ task.experience_point }}</li>
-    <li>タスク未完了</li>
-    <a href='{% url "task:complete" task.pk %}'>タスクを完了させる</a>
-    {% endif %}
-</ul>
+<div style="background-color: {{ task.background_item.colorcode }};">
+    <h2> <a href='{% url "task:detail" task.pk %}'>{{ task.name }}</a></h2>
+    <ul>
+        <li>依頼者:{{ task.client }}</li>
+        <li>作成日時:{{ task.created_at }}</li>
+        {% if task.is_completed %}
+        <li>タスク完了済み</li>
+        <li>完了者: {{ task.completed_user }}</li>
+        <a href='{% url "task:incomplete" task.pk %}'>タスクを未完了に戻す</a>
+        {% else %}
+        <li>獲得できる経験値:{{ task.experience_point }}</li>
+        <li>タスク未完了</li>
+        <a href='{% url "task:complete" task.pk %}'>タスクを完了させる</a>
+        {% endif %}
+    </ul>
+</div>
 {% endfor %}
 {% endblock %}
