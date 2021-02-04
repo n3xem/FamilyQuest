@@ -13,6 +13,11 @@
 <ul>
     <li>依頼者:{{ task.client }}</li>
     <li>作成日時:{{ task.created_at }}</li>
+    {% if task.is_completed %}
+    <li>タスク完了済み</li>
+    {% else %}
+    <li>タスク未完了</li>
+    {% endif %}
 </ul>
 {% endfor %}
 {% endblock %}
