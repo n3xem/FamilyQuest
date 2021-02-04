@@ -18,3 +18,13 @@ class TaskBackgroundItem(Item):
     colorcode = models.CharField(max_length=20, default='white')
     colorcode_2 = models.CharField(max_length=20, null=True, blank=True)
     image = models.ImageField(upload_to='images/item/', null=True, blank=True)
+
+class UsersTaskBackgroundItems(models.Model):
+    user = models.ForeignKey(
+        'users.User',
+        on_delete=models.CASCADE,
+    )
+    item = models.ForeignKey(
+        'shop.TaskBackgroundItem',
+        on_delete=models.CASCADE,
+    )
