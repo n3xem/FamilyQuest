@@ -51,7 +51,7 @@ class DetailView(generic.DetailView):
 
 class CreateView(LoginRequiredMixin, generic.edit.CreateView):
     model = Task
-    fields = ['name', 'experience_point', 'is_show_child']
+    fields = ['name', 'experience_point', 'is_show_child', 'background_item']
     login_url = '/login/'
 
     def form_valid(self, form):
@@ -60,7 +60,7 @@ class CreateView(LoginRequiredMixin, generic.edit.CreateView):
 
 class UpdateView(LoginRequiredMixin, generic.edit.UpdateView):
     model = Task
-    fields = ['name', 'experience_point', 'is_show_child']
+    fields = ['name', 'experience_point', 'is_show_child', 'background_item']
     login_url = '/login/'
 
     def form_valid(self, form):
