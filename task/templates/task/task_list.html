@@ -15,6 +15,8 @@
                 background-color: {{ task.background_item.colorcode }}; 
                 {% elif task.background_item.type == 1 %}
                 background: linear-gradient(-135deg, {{ task.background_item.colorcode }}, {{ task.background_item.colorcode_2}} );
+                {% elif task.background_item.type == 2 %}
+                    background-image: url({{ MEDIA_URL }}{{ task.background_item.image }});
                 {% endif %}">
                 <div class="card-body">
                     <h2 class="card-title"> <a href='{% url "task:detail" task.pk %}'>{{ task.name }}</a></h2>

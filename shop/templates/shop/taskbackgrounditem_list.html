@@ -8,8 +8,13 @@
         {% for item in object_list %}
         <div class="col">
             <div class="card">
-                <div class="card-body"
-                    style="{% if item.type == 0 %}background-color: {{ item.colorcode }}; {% elif item.type == 1 %}background: linear-gradient(-135deg, {{ item.colorcode }}, {{ item.colorcode_2}} );{% endif %}">
+                <div class="card-body" style="{% if item.type == 0 %}
+                    background-color: {{ item.colorcode }}; 
+                    {% elif item.type == 1 %}
+                    background: linear-gradient(-135deg, {{ item.colorcode }}, {{ item.colorcode_2 }} );
+                    {% elif item.type == 2 %}
+                    background-image: url({{ MEDIA_URL }}{{ item.image }});
+                    {% endif %}">
                     <h1 class="card-title">{{ item.name }}</h1>
                     <p>{{ item.experience_point_cost }}ポイントで買えます</p>
                     <a class="btn btn-primary" href='{% url "shop:taskbg_buy" item.pk %}' role="button">購入する</a>
