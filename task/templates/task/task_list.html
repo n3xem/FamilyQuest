@@ -1,11 +1,11 @@
 {% extends "./base.html" %}
 {% block title %}タスク一覧{% endblock %}
 {% block content %}
-<div class="container">
-    <h1 class="display-2">タスク一覧</h1>
+<div class="container mt-3 mb-5">
+    <h1 class="display-5">タスク一覧</h1>
     {% if user.is_authenticated %}
     <div class="task-create">
-        <a href='{% url "task:create" %}'>新しいタスクの追加</a>
+        <a href='{% url "task:create" %}' class="btn btn-secondary mb-3">新しいタスクの追加</a>
     </div>
     {% endif %}
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
@@ -19,14 +19,15 @@
                     background-image: url({{ MEDIA_URL }}{{ task.background_item.image }});
                 {% endif %}">
                 <div class="card-body">
-                    <h2 class="card-title"> <a href='{% url "task:detail" task.pk %}'>{{ task.name }}</a></h2>
+                    <h3 class="card-title"> <a href='{% url "task:detail" task.pk %}'>{{ task.name }}</a></h3>
                     <table class="table">
+                        <!--
                         <thead>
                             <tr>
                                 <th scope="col">項目</th>
                                 <th scope="col">値</th>
                             </tr>
-                        </thead>
+                        </thead> -->
                         <tbody>
                             <tr>
                                 <th scope="row">依頼者</th>
