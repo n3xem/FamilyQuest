@@ -1,3 +1,4 @@
+from task.forms import TaskCreateForm
 from django.db.models.deletion import SET_NULL
 from django.db.models.lookups import IsNull
 from django.urls import reverse_lazy
@@ -49,6 +50,7 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Task
 
+"""
 class CreateView(LoginRequiredMixin, generic.edit.CreateView):
     model = Task
     fields = ['name', 'experience_point', 'is_show_child', 'background_item']
@@ -57,6 +59,19 @@ class CreateView(LoginRequiredMixin, generic.edit.CreateView):
     def form_valid(self, form):
         form.instance.client = self.request.user
         return super().form_valid(form)
+"""
+
+class CreateView(LoginRequiredMixin, generic.edit.CreateView):
+    template_name = 'task/task_form.html'
+    form_class = TaskCreateForm
+
+    def form_valid(self,form):
+        form.instance.client = self.request.user
+        return super().form_valid(form)
+    def get_form_kwargs(self):
+        kwargs = super(CreateView, self).get_form_kwargs()
+        kwargs['client'] = self.request.user
+        return kwargs
 
 class UpdateView(LoginRequiredMixin, generic.edit.UpdateView):
     model = Task
