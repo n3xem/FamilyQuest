@@ -7,22 +7,63 @@
     <a href='{% url "task:create" %}'>新しいタスクの追加</a>
 </div>
 {% endif %}
-{% for task in object_list %}
-<div style="background-color: {{ task.background_item.colorcode }};">
-    <h2> <a href='{% url "task:detail" task.pk %}'>{{ task.name }}</a></h2>
-    <ul>
-        <li>依頼者:{{ task.client }}</li>
-        <li>作成日時:{{ task.created_at }}</li>
-        {% if task.is_completed %}
-        <li>タスク完了済み</li>
-        <li>完了者: {{ task.completed_user }}</li>
-        <a href='{% url "task:incomplete" task.pk %}'>タスクを未完了に戻す</a>
-        {% else %}
-        <li>獲得できる経験値:{{ task.experience_point }}</li>
-        <li>タスク未完了</li>
-        <a href='{% url "task:complete" task.pk %}'>タスクを完了させる</a>
-        {% endif %}
-    </ul>
+<div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+        {% for task in object_list %}
+        <div class="col">
+            <div class="card" style="background-color: {{ task.background_item.colorcode }};">
+                <div class="card-body">
+                    <h2 class="card-title"> <a href='{% url "task:detail" task.pk %}'>{{ task.name }}</a></h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">項目</th>
+                                <th scope="col">値</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">依頼者</th>
+                                <td>{{ task.client }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">作成日時</th>
+                                <td>{{ task.created_at }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">クエストの状態</th>
+                                {% if task.is_completed %}
+                                <td>完了済み</td>
+                                {% else %}
+                                <td>未達成</td>
+                                {% endif %}
+                            </tr>
+                            {% if task.is_completed %}
+                            <tr>
+                                <th scope="row">完了者</th>
+                                <td>{{ task.completed_user }}</td>
+                            </tr>
+                            {% endif %}
+                            {% if not task.is_completed %}
+                            <tr>
+                                <th scope="row">報酬経験値</th>
+                                <td>{{ task.experience_point }}</td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                    <div class="d-grip gap-2">
+                        {% if task.is_completed %}
+                        <a class="btn btn-primary" href='{% url "task:incomplete" task.pk %}'
+                            role="button">タスクを未完了に戻す</a>
+                        {% else %}
+                        <a class="btn btn-primary" href='{% url "task:complete" task.pk %}' role="button">タスクを完了させる</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
-{% endfor %}
 {% endblock %}
