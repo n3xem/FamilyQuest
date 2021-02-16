@@ -1,0 +1,24 @@
+{% extends "./base.html" %}
+{% block title %}{{ item.name }} の購入に失敗しました{% endblock %}
+{% block content %}
+<div class="alert alert-danger" role="alert">
+    「{{ item.name }}」の購入に失敗しました。</h1>
+    <a class="btn btn-danger" href="{% url 'shop:index' %}">戻る</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">あなたの経験値</th>
+            <th scope="col">{{ item.name }}の価格</th>
+            <th scope="col">差額</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ user.experience_point }}</td>
+            <td>{{ item.experience_point_cost }}</td>
+            <td>{{ diff }}</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
