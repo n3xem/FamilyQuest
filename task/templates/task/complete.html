@@ -1,0 +1,10 @@
+{% extends "./base.html" %}
+{% block title %}タスク完了{% endblock %}
+{% block content %}
+{% if task.is_completed %}
+<h1>「{{ task.name }}」完了！</h1>
+{% else %}
+<h1>「{{ task.name }}」を未完了に戻しました。</h1>
+{% endif %}
+<a href="{% url 'task:index' %}">タスクの一覧に戻る</a>
+{% endblock %}
