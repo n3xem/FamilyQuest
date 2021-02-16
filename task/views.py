@@ -41,6 +41,7 @@ def incomplete(request, pk):
 
 class IndexView(generic.ListView):
     model = Task
+    ordering = ['is_completed']
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

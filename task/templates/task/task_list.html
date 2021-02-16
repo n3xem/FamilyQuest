@@ -61,7 +61,7 @@
                     </table>
                     <div class="d-grip gap-2">
                         {% if task.is_completed %}
-                        <a class="btn btn-primary" href='{% url "task:incomplete" task.pk %}'
+                        <a class="btn btn-warning" href='{% url "task:incomplete" task.pk %}'
                             role="button">タスクを未完了に戻す</a>
                         {% else %}
                         <a class="btn btn-primary" href='{% url "task:complete" task.pk %}' role="button">タスクを完了させる</a>
