@@ -10,4 +10,4 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('shop/', include('shop.urls')),
     path('admin/', admin.site.urls),
-] + static(settings.IMAGE_URL, document_root=settings.IMAGE_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

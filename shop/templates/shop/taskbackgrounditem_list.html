@@ -13,7 +13,7 @@
                     {% elif item.type == 1 %}
                     background: linear-gradient(-135deg, {{ item.colorcode }}, {{ item.colorcode_2 }} );
                     {% elif item.type == 2 %}
-                    background-image: url({{ MEDIA_URL }}{{ item.image }});
+                    background-image: url(/{{ item.image }});
                     {% endif %}">
                     <h1 class="card-title">{{ item.name }}</h1>
                     <p>{{ item.experience_point_cost }}ポイントで買えます</p>
@@ -33,7 +33,7 @@
                     {% elif item.type == 1 %}
                     background: linear-gradient(-135deg, {{ item.colorcode }}, {{ item.colorcode_2 }} );
                     {% elif item.type == 2 %}
-                    background-image: url({{ MEDIA_URL }}{{ item.image }});
+                    background-image: url(/{{ item.image }});
                     {% endif %}
                     opacity: 0.5;
                     ">
