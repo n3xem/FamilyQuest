@@ -1,10 +1,30 @@
 from shop.models import TaskBackgroundItem, UsersTaskBackgroundItems
+from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.views import generic
+from icecream import ic
 
-
+"""
 class IndexView(generic.ListView):
     model =  TaskBackgroundItem
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        return context
+"""
+
+def index_view(request):
+    bought_item_pks = list(UsersTaskBackgroundItems.objects.filter(user__pk=request.user.pk).values_list('item', flat=True))
+
+    bought_items = TaskBackgroundItem.objects.filter(pk__in=bought_item_pks)
+    not_bought_items = TaskBackgroundItem.objects.exclude(pk__in=bought_item_pks)
+
+    context = { 
+        'object_list': not_bought_items,
+        'bought_items': bought_items,
+    }
+    return render(request, 'shop/taskbackgrounditem_list.html', context)
 
     
 def task_background_item_buy(request, pk):

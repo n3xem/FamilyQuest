@@ -22,6 +22,29 @@
             </div>
         </div>
         {% endfor %}
+
+        {% for item in bought_items %}
+        <div class="col">
+            <div class="card">
+                <div class="card-body" style="{% if item.type == 0 %}
+                    background-color: {{ item.colorcode }}; 
+                    {% elif item.type == 1 %}
+                    background: linear-gradient(-135deg, {{ item.colorcode }}, {{ item.colorcode_2 }} );
+                    {% elif item.type == 2 %}
+                    background-image: url({{ MEDIA_URL }}{{ item.image }});
+                    {% endif %}
+                    opacity: 0.5;
+                    ">
+                    <h1 class="card-title">{{ item.name }}</h1>
+                    <p>{{ item.experience_point_cost }}ポイントで買えます</p>
+                    <a class="btn btn-warning" role="button">購入できません</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+
     </div>
 </div>
 {% endblock %}
