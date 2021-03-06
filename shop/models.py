@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.fields import IntegerField
 
+
 class Item(models.Model):
     name = models.CharField(max_length=50)
     experience_point_cost = models.IntegerField(default=0)
@@ -11,6 +12,7 @@ class Item(models.Model):
     class Meta:
         abstract = True
 
+
 class TaskBackgroundItem(Item):
     # 0 = colorbg, 1 = gradation, 2 = image
     type = IntegerField(default=0)
@@ -18,6 +20,7 @@ class TaskBackgroundItem(Item):
     colorcode = models.CharField(max_length=20, default='white')
     colorcode_2 = models.CharField(max_length=20, null=True, blank=True)
     image = models.ImageField(upload_to='images/item/', null=True, blank=True)
+
 
 class UsersTaskBackgroundItems(models.Model):
     user = models.ForeignKey(

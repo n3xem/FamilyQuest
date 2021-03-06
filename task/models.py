@@ -1,7 +1,8 @@
 from django.db import models
 from django.db.models.deletion import PROTECT, SET_NULL
-from django.urls import reverse
 from django.db.models.fields import BooleanField
+from django.urls import reverse
+
 
 class Task(models.Model):
     name = models.CharField(max_length=50)
